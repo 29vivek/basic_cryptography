@@ -9,7 +9,7 @@ class EncryptPage extends StatefulWidget {
   _EncryptPageState createState() => _EncryptPageState();
 }
 
-class _EncryptPageState extends State<EncryptPage> {
+class _EncryptPageState extends State<EncryptPage> with AutomaticKeepAliveClientMixin<EncryptPage> {
 
   TextEditingController _stringController = TextEditingController();
   TextEditingController _keyController = TextEditingController();
@@ -19,6 +19,7 @@ class _EncryptPageState extends State<EncryptPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.all(16),
@@ -106,4 +107,7 @@ class _EncryptPageState extends State<EncryptPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

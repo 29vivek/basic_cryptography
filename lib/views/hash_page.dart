@@ -11,7 +11,7 @@ class HashPage extends StatefulWidget {
   _HashPageState createState() => _HashPageState();
 }
 
-class _HashPageState extends State<HashPage> {
+class _HashPageState extends State<HashPage> with AutomaticKeepAliveClientMixin<HashPage> {
 
   TextEditingController _controller = TextEditingController();
   States _state = States.normal;
@@ -20,6 +20,7 @@ class _HashPageState extends State<HashPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.all(16),
@@ -106,4 +107,7 @@ class _HashPageState extends State<HashPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
