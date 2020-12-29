@@ -98,7 +98,7 @@ class _HashPageState extends State<HashPage> {
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? Visualizer(results: _results, title: 'Time taken by various hash functions (ms)',)
+              ? Visualizer(results: _results, title: 'Time taken by various hash functions (μs)',)
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]

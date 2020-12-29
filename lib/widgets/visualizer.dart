@@ -27,7 +27,6 @@ class _VisualizerState extends State<Visualizer> {
     series = [
       charts.Series(
         id: "Time",
-        displayName: "Time taken in Milliseconds",
         data: widget.results,
         domainFn: (TimedOutput output, _) => output.title,
         measureFn: (TimedOutput output, _) => output.duration,

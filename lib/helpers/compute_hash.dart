@@ -40,7 +40,7 @@ class ComputeHash {
       }
 
       watch.stop();
-      computed.add(TimedOutput(title: hash.toString().split('.').last, duration: watch.elapsedMilliseconds, output: digest.toString()));
+      computed.add(TimedOutput(title: hash.toString().split('.').last, duration: watch.elapsedMicroseconds, output: digest.toString()));
     }
 
     return computed;
@@ -79,7 +79,7 @@ class ComputeHash {
       }
 
       watch.stop();
-      computed.add(TimedOutput(title: hash.toString().split('.').last, duration: watch.elapsedMilliseconds, output: digest.toString()));
+      computed.add(TimedOutput(title: hash.toString().split('.').last, duration: watch.elapsedMicroseconds, output: digest.toString()));
     }
 
     return computed;    
