@@ -77,6 +77,7 @@ class _HashPageState extends State<HashPage> {
               FocusScope.of(context).unfocus();
               setState(() {
                 _state = States.processing;
+                _results = null;
               });
 
               var computed = _controller.text.isNotEmpty ? ComputeHash.hashString(_controller.text) : _file != null ? await ComputeHash.hashFile(_file) : null;
