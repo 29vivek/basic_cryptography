@@ -58,7 +58,7 @@ class _HashPageState extends State<HashPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: Text('Selected file: ${_file?.path?.split(Platform.pathSeparator)?.last ?? 'No file selected'}', overflow: TextOverflow.visible),
+            child: Text('Selected file: ${_file?.path?.split(Platform.pathSeparator)?.last ?? 'No file selected'}', overflow: TextOverflow.visible, style: Theme.of(context).textTheme.bodyText1),
           ),
           FlatButton(
             onPressed: () {
@@ -98,7 +98,7 @@ class _HashPageState extends State<HashPage> {
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? Visualizer(results: _results)
+              ? Visualizer(results: _results, title: 'Time taken by various hash functions (ms)',)
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]
