@@ -7,9 +7,9 @@ import 'package:flutter/services.dart';
 class Visualizer extends StatefulWidget {
 
   final List<TimedOutput> results;
-  final String title;
+  final String chartTitle;
 
-  const Visualizer({Key key, @required this.results, @required this.title}) : super(key: key);
+  const Visualizer({Key key, @required this.results, @required this.chartTitle}) : super(key: key);
 
   @override
   _VisualizerState createState() => _VisualizerState();
@@ -32,7 +32,6 @@ class _VisualizerState extends State<Visualizer> {
         measureFn: (TimedOutput output, _) => output.duration,
       ),
     ];
-
   }
 
 
@@ -42,7 +41,7 @@ class _VisualizerState extends State<Visualizer> {
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
-        if(series != null)
+        if(series != null) // indicator to whether visualize results or not 
           Container(
             height: 400,
             child: Card(
@@ -51,7 +50,7 @@ class _VisualizerState extends State<Visualizer> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Text(widget.title, style: Theme.of(context).textTheme.bodyText1),
+                    Text(widget.chartTitle, style: Theme.of(context).textTheme.bodyText1),
                     Expanded(
                       child: charts.BarChart(
                         series, 
@@ -65,7 +64,7 @@ class _VisualizerState extends State<Visualizer> {
               ),
             ),
           ),
-        ...List.generate(widget.results.length, (i) => ListTile(title: Text(widget.results[i].title), subtitle: Text(widget.results[i].output), onLongPress: () { Clipboard.setData(new ClipboardData(text: widget.results[i].output)); })),
+        ...List.generate(widget.results.length, (i) => ListTile(title: Text(widget.results[i].title), subtitle: Text(widget.results[i].output), onLongPress: () { Clipboard.setData(ClipboardData(text: widget.results[i].output)); })),
       ]
     );
   }

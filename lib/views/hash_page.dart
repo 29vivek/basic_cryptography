@@ -66,6 +66,7 @@ class _HashPageState extends State<HashPage> with AutomaticKeepAliveClientMixin<
               FocusScope.of(context).unfocus();
               setState(() {
                 _file = null;
+                _results = null;
                 _state = States.normal;
               });
               _controller.clear();
@@ -78,7 +79,6 @@ class _HashPageState extends State<HashPage> with AutomaticKeepAliveClientMixin<
               FocusScope.of(context).unfocus();
               setState(() {
                 _state = States.processing;
-                _results = null;
               });
 
               var computed = _controller.text.isNotEmpty ? ComputeHash.hashString(_controller.text) : _file != null ? await ComputeHash.hashFile(_file) : null;
@@ -100,7 +100,7 @@ class _HashPageState extends State<HashPage> with AutomaticKeepAliveClientMixin<
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? Visualizer(results: _results, title: 'Time taken by various hash functions (μs)',)
+              ? Visualizer(results: _results, chartTitle: 'Time taken by various hash functions (μs)',)
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]
