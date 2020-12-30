@@ -45,7 +45,7 @@ class _EncryptPageState extends State<EncryptPage> with AutomaticKeepAliveClient
           ),
           TextField(
             controller: _shiftController,
-            decoration: InputDecoration(border: UnderlineInputBorder(), labelText: 'Enter shift (if applicable)'),
+            decoration: InputDecoration(border: UnderlineInputBorder(), labelText: 'Enter shift/rails (if applicable)'),
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             onSubmitted: (text) {

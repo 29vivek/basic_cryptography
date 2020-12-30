@@ -28,12 +28,16 @@ class ComputeCipher {
         case Ciphers.vignere:
           encrypted = _vignere(input, key, encrypt: true);
           break;
-        case Ciphers.playfair:
+        case Ciphers.railfence:
+          encrypted = _railfence(input, shift, encrypt: true);
+          break;
+        case Ciphers.hill:
           encrypted = 'yet to implement.';
           break;
-        case Ciphers.railfence:
+        case Ciphers.playfair:
           encrypted = 'no eta';
           break;
+        
       }
 
       watch.stop();
@@ -109,6 +113,40 @@ class ComputeCipher {
 
     return output;
   }
+
+  static String _railfence(String input, String rails, {bool encrypt}) {
+    
+    String output = '';
+    if(nonAlphaRegExp.allMatches(input).length != 0)
+      return 'Invalid characters in plaintext!';
+
+    int key = int.tryParse(rails);
+    if(key == null)
+      return 'Invalid key. Must be integer.';
+    
+    List<List<String>> enc = List<List<String>>.generate(key, (i) => List<String>.generate(input.length, (j) => ''));
+
+    int row = 0;
+    int flag = 0;
+    for(int i = 0; i < input.length; i++) {
+      enc[row][i] = input[i];
+
+      if(row == 0)
+        flag = 0;
+      else if(row == key - 1)
+        flag = 1;
+      
+      if(flag == 0)
+        row += 1;
+      else
+        row -= 1;
+    }
+    for(var rail in enc) {
+      for(var char in rail) {
+        if(char != '')
+          output += char;
+      }
+    }
+    return output;
+  }
 }
-          
-          
