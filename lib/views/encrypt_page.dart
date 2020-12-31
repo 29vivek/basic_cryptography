@@ -3,6 +3,7 @@ import 'package:Ahteeg/models/enums.dart';
 import 'package:Ahteeg/widgets/visualizer.dart';
 import 'package:Ahteeg/constants/placeholders.dart' as placeholders;
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class EncryptPage extends StatefulWidget {
   @override
@@ -91,7 +92,7 @@ class _EncryptPageState extends State<EncryptPage> with AutomaticKeepAliveClient
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? Visualizer(results: _results, chartTitle: 'Time taken by various encryption algorithms (μs)',)
+              ? Visualizer(results: _results, timeChartTitle: 'Time taken by various encryption algorithms (μs)', colors: List.generate(_results.length, (i) => Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0)))
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]

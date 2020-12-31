@@ -97,10 +97,7 @@ class _DecryptPageState extends State<DecryptPage> with AutomaticKeepAliveClient
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? GestureDetector(
-                onLongPress: () { Clipboard.setData(ClipboardData(text: _result.output)); },
-                child: Text('Decrypted Message: ${_result.output}', style: Theme.of(context).textTheme.bodyText1)
-              )
+              ? Text('Decrypted Message: ${_result.output}', style: Theme.of(context).textTheme.bodyText1)
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]

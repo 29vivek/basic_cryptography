@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:Ahteeg/constants/placeholders.dart' as placeholders;
+import 'dart:math' as math;
 import 'package:Ahteeg/helpers/compute_hash.dart';
 import 'package:Ahteeg/models/enums.dart';
 import 'package:Ahteeg/widgets/visualizer.dart';
@@ -48,10 +49,16 @@ class _HashPageState extends State<HashPage> with AutomaticKeepAliveClientMixin<
                 // print(result.files.single.name);
                 setState(() {
                   _file = File(result.files.single.path);
+                  _state = States.normal;
+                  _results = null;
                 });
                 _controller.clear();
               } else {
                 // user cancelled the dialog
+                setState(() {
+                  _state = States.normal;
+                  _results = null;
+                });
               }
             }, 
             child: Text('Choose a file instead'),
@@ -100,7 +107,7 @@ class _HashPageState extends State<HashPage> with AutomaticKeepAliveClientMixin<
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? Visualizer(results: _results, chartTitle: 'Time taken by various hash functions (μs)',)
+              ? Visualizer(results: _results, timeChartTitle: 'Time taken by various hash functions (μs)', scoreChartTitle: 'Scores of various hash functions', colors: List.generate(_results.length, (i) => Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0)),)
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]
