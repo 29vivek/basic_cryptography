@@ -92,7 +92,7 @@ class _EncryptPageState extends State<EncryptPage> with AutomaticKeepAliveClient
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? Visualizer(results: _results, timeChartTitle: 'Time taken by various encryption algorithms (μs)', colors: List.generate(_results.length, (i) => Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0)))
+              ? Visualizer(results: _results, timeChartTitle: 'Time taken by various encryption algorithms (μs)', scoreChartTitle: 'Scores of various encryption algorithms', colors: List.generate(_results.length, (i) => Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0)))
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]

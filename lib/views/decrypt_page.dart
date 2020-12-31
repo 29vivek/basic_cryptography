@@ -97,7 +97,7 @@ class _DecryptPageState extends State<DecryptPage> with AutomaticKeepAliveClient
             alignment: Alignment.center,
             child: 
               _state == States.finished
-              ? Text('Decrypted Message: ${_result.output}', style: Theme.of(context).textTheme.bodyText1)
+              ? Text('Decrypted Message: $_result', style: Theme.of(context).textTheme.bodyText1, overflow: TextOverflow.visible,)
               : Text(_state == States.processing ? placeholders.ProcessingMessage : placeholders.NormalMessage, textAlign: TextAlign.center),
           ),
         ]

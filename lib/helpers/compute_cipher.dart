@@ -1,3 +1,4 @@
+import 'package:Ahteeg/constants/placeholders.dart';
 import 'package:Ahteeg/models/enums.dart';
 import 'package:Ahteeg/models/timed_output.dart';
 import 'package:Ahteeg/models/xy_coordinate.dart';
@@ -21,35 +22,42 @@ class ComputeCipher {
       watch.start();
 
       String encrypted;
+      int keySize;
+      int timeTaken;
 
       switch(cipher) {
         case Ciphers.playfair:
           encrypted = _playfair(input, key, encrypt: true);
+          keySize = 25;
           break;
         case Ciphers.vignere:
           encrypted = _vignere(input, key, encrypt: true);
+          keySize = input.length > key.length ? key.length : input.length;
           break;
         case Ciphers.caesar:
           encrypted = _caesar(input, shift, encrypt: true);
+          keySize = 1;
           break;
         case Ciphers.railfence:
           encrypted = _railfence(input, shift, encrypt: true);
+          keySize = int.tryParse(shift) ?? 1;
           break;
       }
 
       watch.stop();
-      computed.add(TimedOutput(title: cipher.toString().split('.').last, duration: watch.elapsedMicroseconds, output: encrypted));
+      timeTaken = watch.elapsedMicroseconds;
+      bool isError = ErrorMessages.contains(encrypted);
+
+      computed.add(TimedOutput(title: cipher.toString().split('.').last, duration: isError? null : watch.elapsedMicroseconds, output: encrypted, score: isError ? null : (keySize - (timeTaken/1000))));
     }
 
     return computed;
   }
 
-  static TimedOutput decrypt({@required String input, String key, @required Ciphers cipher}) {
+  static String decrypt({@required String input, String key, @required Ciphers cipher}) {
 
     if(input.isEmpty || key.isEmpty)
       return null;
-    
-    Stopwatch watch = Stopwatch()..start();
     
     String decrypted;
     switch(cipher) {
@@ -66,9 +74,8 @@ class ComputeCipher {
         decrypted = _railfence(input, key);
         break;
     }
-    watch.stop();
 
-    return TimedOutput(title: cipher.toString().split('.').last, duration: watch.elapsedMicroseconds, output: decrypted);
+    return decrypted;
   }
 
   static int _offsetFor(int ch) {
