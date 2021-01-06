@@ -1,16 +1,21 @@
 # Ahteeg
 
-A new Flutter project.
+App to showcase various different ciphers, and hash functions.
+Includes encryption, decryption and checksum finder in an intuitive tabbed layout.
+Includes graphs to visualize time taken and ranks each algorithm accordingly.
+Proper error handling and edge cases are taken care of.
 
-## Getting Started
+## Ciphers:
 
-This project is a starting point for a Flutter application.
+- Playfair cipher
+- Vignere cipher
+- Caeser cipher
+- Railfence cipher
 
-A few resources to get you started if this is your first Flutter project:
+## Hash Functions:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+MD5, SHA-1, SHA-224, SHA-256, SHA-384 and SHA-512 algorithms.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Doing more:
+
+Adding new ciphers/hash functions is as easy as it gets. Just add an entry in enums, and add its helper function. No changes are required in UI.
